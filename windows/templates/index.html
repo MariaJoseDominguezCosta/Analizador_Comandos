@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizador de Comandos de Linux</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .card {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 20px;
+            margin:20px;
+        }
+        .error {
+            color: red;
+        }
+        pre {
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        header {
+            font-size: 2em;
+            margin: 0;
+            text-align: center;
+            align-content: center;
+            width: 100%;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            height: 8vh;
+        }
+        textarea {
+            width: 90%;
+            height: 290px;
+            resize: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 1em;
+            background-color: #5E2750;
+            color: #FFFFFF;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>Analizador de Comandos de Windows "No teniamos linux asi que hicimos el procedimiento correcto usando el shell de Windows"</header>
+    <form method="POST">
+        <div class="container">
+            <div class="card">
+                <label for="commands">Comandos de Windows:</label><br>
+                <textarea name="commands" id="commands"></textarea><br>
+                <input type="submit" value="Analizar">
+                {% if error %}
+                <div class="error">{{ error }}</div>
+                {% endif %}
+            </div>
+            <div class="card">
+                <label for="output">Salida:</label><br>
+                <textarea id="output" readonly>{{ output }}</textarea>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

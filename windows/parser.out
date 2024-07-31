@@ -1,0 +1,190 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BACKGROUND
+
+Grammar
+
+Rule 0     S' -> command_list
+Rule 1     command_list -> command
+Rule 2     command_list -> command_list PIPE command
+Rule 3     command -> COMMAND
+Rule 4     command -> COMMAND options
+Rule 5     command -> COMMAND options args
+Rule 6     command -> COMMAND args
+Rule 7     options -> OPTION
+Rule 8     options -> options OPTION
+Rule 9     args -> ARG
+Rule 10    args -> args ARG
+Rule 11    redirects -> redirect
+Rule 12    redirects -> redirects redirect
+Rule 13    redirect -> REDIRECT_OUT ARG
+Rule 14    redirect -> REDIRECT_IN ARG
+Rule 15    redirect -> REDIRECT_APPEND ARG
+
+Terminals, with rules where they appear
+
+ARG                  : 9 10 13 14 15
+BACKGROUND           : 
+COMMAND              : 3 4 5 6
+OPTION               : 7 8
+PIPE                 : 2
+REDIRECT_APPEND      : 15
+REDIRECT_IN          : 14
+REDIRECT_OUT         : 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+args                 : 5 6 10
+command              : 1 2
+command_list         : 2 0
+options              : 4 5 8
+redirect             : 11 12
+redirects            : 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . command_list
+    (1) command_list -> . command
+    (2) command_list -> . command_list PIPE command
+    (3) command -> . COMMAND
+    (4) command -> . COMMAND options
+    (5) command -> . COMMAND options args
+    (6) command -> . COMMAND args
+
+    COMMAND         shift and go to state 3
+
+    command_list                   shift and go to state 1
+    command                        shift and go to state 2
+
+state 1
+
+    (0) S' -> command_list .
+    (2) command_list -> command_list . PIPE command
+
+    PIPE            shift and go to state 4
+
+
+state 2
+
+    (1) command_list -> command .
+
+    PIPE            reduce using rule 1 (command_list -> command .)
+    $end            reduce using rule 1 (command_list -> command .)
+
+
+state 3
+
+    (3) command -> COMMAND .
+    (4) command -> COMMAND . options
+    (5) command -> COMMAND . options args
+    (6) command -> COMMAND . args
+    (7) options -> . OPTION
+    (8) options -> . options OPTION
+    (9) args -> . ARG
+    (10) args -> . args ARG
+
+    PIPE            reduce using rule 3 (command -> COMMAND .)
+    $end            reduce using rule 3 (command -> COMMAND .)
+    OPTION          shift and go to state 7
+    ARG             shift and go to state 8
+
+    options                        shift and go to state 5
+    args                           shift and go to state 6
+
+state 4
+
+    (2) command_list -> command_list PIPE . command
+    (3) command -> . COMMAND
+    (4) command -> . COMMAND options
+    (5) command -> . COMMAND options args
+    (6) command -> . COMMAND args
+
+    COMMAND         shift and go to state 3
+
+    command                        shift and go to state 9
+
+state 5
+
+    (4) command -> COMMAND options .
+    (5) command -> COMMAND options . args
+    (8) options -> options . OPTION
+    (9) args -> . ARG
+    (10) args -> . args ARG
+
+    PIPE            reduce using rule 4 (command -> COMMAND options .)
+    $end            reduce using rule 4 (command -> COMMAND options .)
+    OPTION          shift and go to state 11
+    ARG             shift and go to state 8
+
+    args                           shift and go to state 10
+
+state 6
+
+    (6) command -> COMMAND args .
+    (10) args -> args . ARG
+
+    PIPE            reduce using rule 6 (command -> COMMAND args .)
+    $end            reduce using rule 6 (command -> COMMAND args .)
+    ARG             shift and go to state 12
+
+
+state 7
+
+    (7) options -> OPTION .
+
+    OPTION          reduce using rule 7 (options -> OPTION .)
+    ARG             reduce using rule 7 (options -> OPTION .)
+    PIPE            reduce using rule 7 (options -> OPTION .)
+    $end            reduce using rule 7 (options -> OPTION .)
+
+
+state 8
+
+    (9) args -> ARG .
+
+    ARG             reduce using rule 9 (args -> ARG .)
+    PIPE            reduce using rule 9 (args -> ARG .)
+    $end            reduce using rule 9 (args -> ARG .)
+
+
+state 9
+
+    (2) command_list -> command_list PIPE command .
+
+    PIPE            reduce using rule 2 (command_list -> command_list PIPE command .)
+    $end            reduce using rule 2 (command_list -> command_list PIPE command .)
+
+
+state 10
+
+    (5) command -> COMMAND options args .
+    (10) args -> args . ARG
+
+    PIPE            reduce using rule 5 (command -> COMMAND options args .)
+    $end            reduce using rule 5 (command -> COMMAND options args .)
+    ARG             shift and go to state 12
+
+
+state 11
+
+    (8) options -> options OPTION .
+
+    OPTION          reduce using rule 8 (options -> options OPTION .)
+    ARG             reduce using rule 8 (options -> options OPTION .)
+    PIPE            reduce using rule 8 (options -> options OPTION .)
+    $end            reduce using rule 8 (options -> options OPTION .)
+
+
+state 12
+
+    (10) args -> args ARG .
+
+    ARG             reduce using rule 10 (args -> args ARG .)
+    PIPE            reduce using rule 10 (args -> args ARG .)
+    $end            reduce using rule 10 (args -> args ARG .)
+

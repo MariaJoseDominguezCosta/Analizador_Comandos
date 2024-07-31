@@ -1,0 +1,6 @@
+Comandos que funcionan:
+dir
+cd
+tree
+md
+rename
