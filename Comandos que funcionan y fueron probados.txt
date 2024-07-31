@@ -4,3 +4,7 @@ cd
 tree
 md
 rename
+
+Integrantes:
+Dominguez Costa María José
+Peregrino Clemente Manuel Alejandro
